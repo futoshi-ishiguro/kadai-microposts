@@ -3,6 +3,5 @@ class Micropost < ApplicationRecord
   
   validates :content, presence: true, length: { maximum: 255 }
   
-  has_many :reverses_of_favorite, class_name: "Favorite", foreign_key: "favorite_id"
-  has_many :likeds, through: :reverses_of_favorite, source: :user
+  has_many :reverses_of_favorite, dependent: :destroy, class_name: "Favorite", foreign_key: "micropost_id"
 end
